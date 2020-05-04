@@ -8,6 +8,8 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+
 
 public class modeNormal extends AppCompatActivity {
     private float imagex,imagey;
@@ -17,6 +19,12 @@ public class modeNormal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mode_normal);
+        
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        int height = metrics.heightPixels;
+        int width = metrics.widthPixels;
 
         final SensorManager sm = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         sm.registerListener(accelerometreListener,sm.getDefaultSensor(capteur), SensorManager.SENSOR_DELAY_UI);
